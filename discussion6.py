@@ -57,18 +57,29 @@ class HorseRaces:
             inner keys are (str) races, inner values are (int) race times
             EXAMPLE: {'Special Week': {'Tenno Sho Fall': 16.5, 'Tenno Sho Spring': 16.3, 'Teio Sho': 17.0}}
         '''
-        race_dict = {}
-        headers = table[0]
-        for row in table[1: ]:
-            horse_name = row[0]
-            race_dict[horse_name] = {}
+        # race_dict = {}
+        # headers = table[0]
+        # for row in table[1: ]:
+        #     horse_name = row[0]
+        #     race_dict[horse_name] = {}
 
-        for i in range(1, len(headers)):
-            race_name = headers[i]
-            race_time = float(row[i])
-            race_dict[horse_name][race_name] = race_time
+        #     for i in range(1, len(headers)):
+        #         race_name = headers[i]
+        #         race_time = float(row[i])
+        #         race_dict[horse_name][race_name] = race_time
         
-        return race_dict
+        # return race_dict
+    
+        header = table[0]
+        result_dict = {}
+        
+        for row in table[1:]:
+            horse = row[0]
+            inner_dict = {}
+            for i in range(1, len(row)):
+                inner_dict[header[i]] = float(row[i])
+                result_dict[horse] = inner_dict
+        return result_dict
         # pass
 
 ###############################################################################
@@ -158,7 +169,7 @@ class HorseRaces:
                 total = total + races[race]
                 count = count + 1
             
-            average = total/count
+            average = total / count
             averages[horse] = average
         return averages
         # pass
