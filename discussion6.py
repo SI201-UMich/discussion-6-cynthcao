@@ -57,19 +57,6 @@ class HorseRaces:
             inner keys are (str) races, inner values are (int) race times
             EXAMPLE: {'Special Week': {'Tenno Sho Fall': 16.5, 'Tenno Sho Spring': 16.3, 'Teio Sho': 17.0}}
         '''
-        # race_dict = {}
-        # headers = table[0]
-        # for row in table[1: ]:
-        #     horse_name = row[0]
-        #     race_dict[horse_name] = {}
-
-        #     for i in range(1, len(headers)):
-        #         race_name = headers[i]
-        #         race_time = float(row[i])
-        #         race_dict[horse_name][race_name] = race_time
-        
-        # return race_dict
-    
         header = table[0]
         result_dict = {}
         
@@ -98,21 +85,34 @@ class HorseRaces:
             tuple of fastest race name and the time
             EXAMPLE: ('Teio Sho', 14.8)
         '''
+        # if horse not in self.race_dict:
+        #     return (None, 999.9)
+        
+        # races = self.race_dict[horse]
+
+        # race_names = list(races.keys())
+        # first_race = race_names[0]
+        # fastest_race = first_race
+        # fastest_time = races[first_race]
+
+        # for race in races:
+        #     if races[race] < fastest_time:
+        #         fastest_time = races[race]
+        #         fastest_race = race
+        
+        # return (fastest_race, fastest_time)
+        
+        fastest_race = None
+        fastest_time = 999.9
+
         if horse not in self.race_dict:
-            return (None, 999.9)
+            return (fastest_race, fastest_time)
         
-        races = self.race_dict[horse]
-
-        race_names = list(races.keys())
-        first_race = race_names[0]
-        fastest_race = first_race
-        fastest_time = races[first_race]
-
-        for race in races:
-            if races[race] < fastest_time:
-                fastest_time = races[race]
+        horse_info = self.race_dict[horse]
+        for race, time in horse_info.items():
+            if time < fastest_time:
                 fastest_race = race
-        
+                fastest_time = time 
         return (fastest_race, fastest_time)
         # pass
 
