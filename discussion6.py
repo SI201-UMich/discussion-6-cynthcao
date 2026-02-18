@@ -85,23 +85,7 @@ class HorseRaces:
             tuple of fastest race name and the time
             EXAMPLE: ('Teio Sho', 14.8)
         '''
-        # if horse not in self.race_dict:
-        #     return (None, 999.9)
-        
-        # races = self.race_dict[horse]
 
-        # race_names = list(races.keys())
-        # first_race = race_names[0]
-        # fastest_race = first_race
-        # fastest_time = races[first_race]
-
-        # for race in races:
-        #     if races[race] < fastest_time:
-        #         fastest_time = races[race]
-        #         fastest_race = race
-        
-        # return (fastest_race, fastest_time)
-        
         fastest_race = None
         fastest_time = 999.9
 
@@ -128,23 +112,29 @@ class HorseRaces:
             A dictionary of tuples of each horse, with their fastest race and time.
             EXAMPLE: {"Oguri Cap": ("Tenno Sho Fall", 16.6), "Mejiro McQueen": ("Tenno Sho Fall", 16.1)}
         '''
-        result = {}
+        # result = {}
 
-        for horse in self.race_dict:
-            races = self.race_dict[horse]
-            race_names = list(races.keys())
-            first_race = race_names[0]
-            fastest_race = first_race
-            fastest_time = races[first_race]
+        # for horse in self.race_dict:
+        #     races = self.race_dict[horse]
+        #     race_names = list(races.keys())
+        #     first_race = race_names[0]
+        #     fastest_race = first_race
+        #     fastest_time = races[first_race]
 
-            for race in races:
-                if races[race] < fastest_time:
-                    fastest_time = races[race]
-                    fastest_race = race
+        #     for race in races:
+        #         if races[race] < fastest_time:
+        #             fastest_time = races[race]
+        #             fastest_race = race
             
-            result[horse] = (fastest_race, fastest_time)
+        #     result[horse] = (fastest_race, fastest_time)
         
-        return result
+        # return result
+
+        best_dict = {}
+        for horse in self.race_dict:
+            race_result = self.horse_fastest_race(horse)
+            best_dict[horse] = race_result
+        return best_dict
         # pass
 
 ###############################################################################
