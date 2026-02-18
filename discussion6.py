@@ -112,24 +112,6 @@ class HorseRaces:
             A dictionary of tuples of each horse, with their fastest race and time.
             EXAMPLE: {"Oguri Cap": ("Tenno Sho Fall", 16.6), "Mejiro McQueen": ("Tenno Sho Fall", 16.1)}
         '''
-        # result = {}
-
-        # for horse in self.race_dict:
-        #     races = self.race_dict[horse]
-        #     race_names = list(races.keys())
-        #     first_race = race_names[0]
-        #     fastest_race = first_race
-        #     fastest_time = races[first_race]
-
-        #     for race in races:
-        #         if races[race] < fastest_time:
-        #             fastest_time = races[race]
-        #             fastest_race = race
-            
-        #     result[horse] = (fastest_race, fastest_time)
-        
-        # return result
-
         best_dict = {}
         for horse in self.race_dict:
             race_result = self.horse_fastest_race(horse)
@@ -149,19 +131,27 @@ class HorseRaces:
             A dictionary with each horse and their average time.
             EXAMPLE: {'Gold Ship': 16.5, 'Daiwa Scarlet': 17.2}
         '''
-        averages = {}
-        for horse in self.race_dict:
-            races = self.race_dict[horse]
-            total = 0
-            count = 0
+        # average_dict = {}
+        # for horse in self.race_dict:
+        #     races = self.race_dict[horse]
+        #     total = 0
+        #     count = 0
             
-            for race in races:
-                total = total + races[race]
-                count = count + 1
+        #     for race in races:
+        #         total = total + races[race]
+        #         count = count + 1
             
-            average = total / count
-            averages[horse] = average
-        return averages
+        #     average = total / count
+        #     averages[horse] = average
+        # return averages
+    
+        average_dict = {}
+
+        for horse, races in self.race_dict.items():
+            total = sum(races.values())
+            average = total/len(races)
+            average_dict[horse] = average
+        return average_dict
         # pass
 
 ###############################################################################
